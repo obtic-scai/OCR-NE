@@ -101,8 +101,15 @@ for file_in in directory_in:
                     # corriger les mots incorrects dans le fichier .txt
                     # extraire les erreurs, leurs fréquences et leurs corrections dans un tableur .csv
                     misspelled = spell.unknown(token_list)
+                    
+                    
+                    
                     for m in misspelled:
                         corrected = spell.correction(m)
+                        if m in token_list:
+                            m_freq = token_list.count(m)
+                            # print(m_freq)
+                        # print(m, corrected, str(m_freq))
                         text = text.replace(m, corrected)
                         # f.write(c.replace('clafliques', 'classiques'))
                         fout.write(m+'\t' + corrected+'\t' + str(m_freq)+' \n')
