@@ -2,6 +2,8 @@
 import os, re, glob, csv
 from spellchecker import SpellChecker
 from lxml import etree
+from collections import Counter
+
     
 
 # ignorer les fichiers cachés dans le directoire avec les docs d'entrée (p. ex. le '._5419000_r.xml') 
@@ -68,10 +70,12 @@ for file_in in directory_in:
                     # tokeniser le texte avec le tokeniseur standard (ex: 'l'empire')
                     # car celui de pyspellchecker tokenise mal (ex: 'l', 'empire')
                     token_list = text.split()
+                    
+
                     # tokeniser le texte avec le tokeniseur de pyspellchecker
                     # tokens = spell.split_words(text)
                     # print(content_list)                    
-
+                    # print(c)
 
                     # ne pas corriger les tokens contenant l'apostrophe (ex : l’empire, d’art, s’étend...)
                     r1 = re.findall(r"(l’\w+|l’\w+-\w+|d’\w+|d’\w+|qu’\w+|c’\w+|n’\w+|j’\w+|lorfqu’\w+|eft)",text)
@@ -80,12 +84,15 @@ for file_in in directory_in:
 
                     
                     # corriger les mots incorrects dans le fichier .txt
-                    # extraire les erreurs et leurs corrections dans un tableur .csv
+                    # extraire les erreurs, leurs fréquences et leurs corrections dans un tableur .csv
                     misspelled = spell.unknown(token_list)
                     for m in misspelled:
+                        if m in token_list:
+                            m_freq = token_list.count(m)
+                            # print(m_freq)
                         corrected = spell.correction(m)
                         text = text.replace(m, corrected)
                         # f.write(c.replace('clafliques', 'classiques'))
-                        fout.write(m+'\t' + corrected+'\t' + ' \n')
+                        fout.write(m+'\t' + corrected+'\t' + str(m_freq)+' \n')
                     # print(text)
                     f.write(text + "\n")
