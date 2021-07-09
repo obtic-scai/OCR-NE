@@ -41,7 +41,7 @@ for file_in in directory_in:
     
     # transférer le contenu des fichiers .xml dans les fichiers .txt
     # nettoyer les .txt
-    car_spec = ['&', '■', '•', '&', '%', '*', '#', '+', '^', '\\', '$', '>', '<', '|', '£']
+    car_spec = ['■', '•', '%', '*', '#', '+', '^', '\\', '$', '>', '<', '|', '£', '{', '}']
     with open(directory_out, 'w') as f, open(corr_out, 'w') as fout:
         writer = csv.writer(fout)
         writer.writerow(["Erreur"'\t' "Correction"'\t' "Fréquence"'\t'])
@@ -54,6 +54,7 @@ for file_in in directory_in:
                           
                     
                     # pré-traitements
+                    text = re.sub('&', 'et', text)
                     text = re.sub('« \n', '', text)
                     text = re.sub(" +", " ", text)
                     text = text.lower()
