@@ -6,7 +6,7 @@ from collections import Counter
 
     
 
-# ignorer les fichiers cachés dans le directoire avec les docs d'entrée (p. ex. le '._5419000_r.xml') 
+# ignorer les fichiers cachés dans le directoire avec les docs d'entrée (p. ex. le '._5419000_r.xml')
 def listdir_nohidden(path):
     return glob.glob(os.path.join(path, '*'))
 
@@ -17,7 +17,7 @@ directory_in = listdir_nohidden("./sample_in/")
 
 
 
-# enlever l'extension .xml des fichiers d'entrée 
+# enlever l'extension .xml des fichiers d'entrée
 for file_in in directory_in:
     tree = etree.parse(file_in)
     root = tree.getroot()
@@ -48,10 +48,10 @@ for file_in in directory_in:
         for elem in root.iter('*'):
             if elem.text is not None:
                 text = elem.text.strip()
-                if text: 
+                if text:
                     for c in car_spec:
                         text = text.replace(c,'')
-                          
+                    
                     
                     # pré-traitements
                     text = re.sub('&', 'et', text)
@@ -62,13 +62,15 @@ for file_in in directory_in:
                     text = text.replace(' ,', ',')
                     text = text.replace("'", "’")
                     text = text.replace(' .','. ')
-                    text = text.replace(' :',':')
-                    text = text.replace(' ;',';')
-                    text = text.replace(' !','!')
-                    text = text.replace(' ?','?')
-                    text = text.replace('" ','"')
+                    text = text.replace(' :',':')
+                    text = text.replace(' ;',';')
+                    text = text.replace(' !','!')
+                    text = re.sub('\s\?','?', text)
+                    text = text.replace(' "','"')
                     text = text.replace('( ','(')
-                    text = text.replace(' )',')') 
+                    text = text.replace(' )',')')
+                    text = text.replace('–', '-')
+                    text = text.replace(' –','-')
                     
                     
                     
@@ -80,7 +82,7 @@ for file_in in directory_in:
                     
                             
 
-                    # définir le correcteur d'orthographe français 
+                    # définir le correcteur d'orthographe français
                     # pyspellchecker
                     spell = SpellChecker(language='fr')
 
@@ -89,14 +91,15 @@ for file_in in directory_in:
                     # tokeniser le texte avec le tokeniseur standard (ex: 'l'empire')
                     # car celui de pyspellchecker tokenise mal (ex: 'l', 'empire')
                     token_list = text.split()
-                    
 
 
+                    for t in token_list:
                     # ne pas corriger les tokens contenant l'apostrophe (ex : l’empire, d’art, s’étend...)
-                    r1 = re.findall(r"(l’\w+|l’\w+-\w+|d’\w+|d’\w+|qu’\w+|c’\w+|n’\w+|j’\w+|lorfqu’\w+|eft)",text)
-                    spell.word_frequency.load_words(r1)
-                    spell.known(r1)  # les mots {'ex : l’empire, d’art, s’étend'} sont désormais dans le dictionnaire des mots corrects
-
+                    # ne pas corriger les tokens en parenthèses non plus (ex : (1716-1790))
+                        r1 = re.findall(r"(l’\w+|l’\w+-\w+|d’\w+|d’\w+|qu’\w+|c’\w+|n’\w+|j’\w+|lorfqu’\w+|eft|\w+.*?\)|\(.*?.\)|\(.*$)", t)
+                        spell.word_frequency.load_words(r1)
+                        a = spell.known(r1)  # les mots {'ex : l’empire, d’art, s’étend'} sont désormais dans le dictionnaire des mots corrects
+                        
                     
                     
                     # corriger les mots incorrects dans le fichier .txt
