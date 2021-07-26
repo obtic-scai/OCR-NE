@@ -36,15 +36,17 @@ for file_in in directory_in:
     
     # créer les nouveaux fichiers .csv où les erreurs avec leurs corrections seront enregistrées
     corr_out = os.path.join('./csv/', file_in+'.csv')
-   
-
+     
     
-    # transférer le contenu des fichiers .xml dans les fichiers .txt
-    # nettoyer les .txt
+    # les caractères spéciaux à enlever
     car_spec = ['■', '•', '%', '*', '#', '+', '^', '\\', '$', '>', '<', '|', '£', '{', '}']
+    
+    # générer un tableur .csv où les erreurs, les corrections et les fréquences d'erreurs seront stockées
     with open(directory_out, 'w') as f, open(corr_out, 'w') as fout:
         writer = csv.writer(fout)
         writer.writerow(["Erreur"'\t' "Correction"'\t' "Fréquence"'\t'])
+        
+        # enlever les balises XML afin de transférer le contenu des fichiers .xml dans les fichiers .txt
         for elem in root.iter('*'):
             if elem.text is not None:
                 text = elem.text.strip()
@@ -54,13 +56,19 @@ for file_in in directory_in:
                     
                     
                     # pré-traitements
-                    text = re.sub('&', 'et', text)
-                    text = re.sub('« \n', '', text)
-                    text = re.sub(" +", " ", text)
-                    text = text.lower()
-                    text = text.replace("\n", " ")
-                    text = text.replace(' ,', ',')
+                    text = re.sub('&', 'et', text) # l'esperluette '&' signifie 'et'
+                    text = re.sub('« \n', '', text) # pour concaténer les mots séparés par un trait d'union
+                                                    # (sous forme d'un guillemet français ouvert)
+                    text = re.sub(" +", " ", text)  # réduire les espaces multiples en un seul espace
+                    text = text.lower() # conversion en minuscules
+                    text = text.replace("\n", " ") # pour que chaque ligne commence depuis le tout début,
+                                                   # et non pas après un espace
+                    
+                    # remplacer le guillemet simple par un guillemet français, pour éviter le problème de parsing
                     text = text.replace("'", "’")
+                    
+                    # effacer l'espace avant certains caractères spéciaux
+                    text = text.replace(' ,', ',')
                     text = text.replace(' .','. ')
                     text = text.replace(' :',':')
                     text = text.replace(' ;',';')
@@ -69,13 +77,15 @@ for file_in in directory_in:
                     text = text.replace(' "','"')
                     text = text.replace('( ','(')
                     text = text.replace(' )',')')
-                    text = text.replace('–', '-')
                     text = text.replace(' –','-')
                     
+                    # remplacer les tirets moyens et longs par les tirets courts
+                    text = text.replace('–', '-')
                     
                     
                     # enlever les signes de ponctuation se trouvant à la fin d'un token
-                    # afin d'éviter que le correcteur corrige la séquence 'token + signe de ponctuation'
+                    # car le signe de ponctuation empêche le correcteur de corriger la séquence
+                    # 'token + signe de ponctuation', même si le token est en effet écrit incorrectement
                     # ex: 'jeuneffe,' (avec virgule) > 'jeuneffe' (incorrect)
                     # au lieu de 'jeuneffe' (sans virgule) > 'jeunesse' (correct)
                     text = re.sub('(?<=\w)[,;:?!.]', '', text)
@@ -98,14 +108,15 @@ for file_in in directory_in:
                     # ne pas corriger les tokens en parenthèses non plus (ex : (1716-1790))
                         r1 = re.findall(r"(l’\w+|l’\w+-\w+|d’\w+|d’\w+|qu’\w+|c’\w+|n’\w+|j’\w+|lorfqu’\w+|eft|\w+.*?\)|\(.*?.\)|\(.*$)", t)
                         spell.word_frequency.load_words(r1)
-                        a = spell.known(r1)  # les mots {'ex : l’empire, d’art, s’étend'} sont désormais dans le dictionnaire des mots corrects
+                        a = spell.known(r1)  # les mots {'ex : l’empire, d’art, s’étend'} sont désormais
+                                             # dans le dictionnaire des mots corrects
                         
                     
                     
                     # corriger les mots incorrects dans le fichier .txt
                     # extraire les erreurs, leurs fréquences et leurs corrections dans un tableur .csv
                     misspelled = spell.unknown(token_list)
-                    
+                 
                     
                     
                     for m in misspelled:
