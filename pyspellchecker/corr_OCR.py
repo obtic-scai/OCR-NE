@@ -39,7 +39,7 @@ for file_in in directory_in:
      
     
     # les caractères spéciaux à enlever
-    car_spec = ['■', '•', '%', '*', '#', '+', '^', '\\', '$', '>', '<', '|', '£', '{', '}']
+    car_spec = ['■', '•', '%', '*', '#', '+', '^', '\\', '$', '>', '<', '£', '{', '}']
     
     # générer un tableur .csv où les erreurs, les corrections et les fréquences d'erreurs seront stockées
     with open(directory_out, 'w') as f, open(corr_out, 'w') as fout:
@@ -47,13 +47,19 @@ for file_in in directory_in:
         writer.writerow(["Erreur"'\t' "Correction"'\t' "Fréquence"'\t'])
         
         # enlever les balises XML afin de transférer le contenu des fichiers .xml dans les fichiers .txt
+
+
+
         for elem in root.iter('*'):
             if elem.text is not None:
                 text = elem.text.strip()
+                if elem.tail is not None:
+                     text = elem.text.strip() + str(elem.tail) # pour récupérer le texte dans la balise imbriquée
+                                                               # ex : par le moyen des <hi rend="i">emblèmes</hi>,
                 if text:
                     for c in car_spec:
                         text = text.replace(c,'')
-                    
+
                     
                     # pré-traitements
                     text = re.sub('&', 'et', text) # l'esperluette '&' signifie 'et'
@@ -127,6 +133,7 @@ for file_in in directory_in:
                         # print(m, corrected, str(m_freq))
                         text = text.replace(m, corrected)
                         # f.write(c.replace('clafliques', 'classiques'))
+
                         fout.write(m+'\t' + corrected+'\t' + str(m_freq)+' \n')
-                    # print(text)
+#                     print(text)
                     f.write(text + "\n")
