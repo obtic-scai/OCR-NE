@@ -24,4 +24,6 @@ The use of those three libraries has improved the text output, even though the r
 
 ## `pyspellchecker`
 
+Some tokens have been well corrected, especially those containing the recurrent alternation throughout the text of the type _ſ:s_, where the _ſ_ is a ligature designating the "long s" (e.g. _con*ſ*eillers > conseillers, repréſente > représente, diverſes > diverses_ and so on).
+
 For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
