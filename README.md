@@ -69,6 +69,39 @@ Correction examples:
 |                   |                           |                                                                                                                       |             |   
 
 
+## `jamspell`
+
+* The archaic forms of some words are not modernised (e.g. _renfermoient_ is not modified into _renfermaient_, by default.
+* The ligatures are well corrected (e.g. _reſpect_ > _respect_)
+* Some hypercorrections are present (e.g. _pallions_ incorrectly corrected into _allions_)
+
+| Error           | Correction      | Frequence |
+|-----------------|-----------------|-----------|
+| renfermoient    | renfermoient    | 1         |
+| c’efl           | c’el            | 1         |
+| lorfque         | lorsque         | 1         |
+| néceflîté       | néreflîté       | 1         |
+| profirent       | profitent       | 1         |
+| s’introduifent  | s’introduisent  | 1         |
+| fe              | fe              | 1         |
+| fe              | fe              | 1         |
+| refpect         | respect         | 1         |
+| adminiftrateurs | administrateurs | 1         |
+| plufieurs       | plusieurs       | 1         |
+| fieclcs         | fields          | 1         |
+| refpecl         | respect         | 1         |
+| fe              | fe              | 1         |
+| foldats         | soldats         | 1         |
+| fages           | fages           | 1         |
+| puifsance       | puissance       | 1         |
+| pafse           | passe           | 1         |
+| oppofer         | opposer         | 1         |
+| pallions        | allions         | 1         |
+| pouvoit         | pouvoir         | 1         |
+
 # Conclusion 
+
+* When combined together, `pyspellchecker` and `pyenchant` correct very well the misspelled words that might have been left uncorrected if only `pyspellchecker` had been used, but the corrections take a considerable amount of time (around 15 minutes for one file weighting between 100 and 200 MB with the first library, and around 10 minutes for the second one);
+* `jamspell` is much less time-consuming; however, 
 
 For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
