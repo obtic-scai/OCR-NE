@@ -11,4 +11,6 @@ The ultimate goal was not the correction post-OCR _per se_, but the valorisation
 
 The code for spellchecking the texts with `pyenchant` was originally written by Nicolas Hiebel, the former intern of the former OBVIL Laboratory of Excellence (cf. the original [repo](https://github.com/Hiebel/Stage-OBVIL-2020/tree/master/Python). 
 
-![Post-OCR](img/post-ocr.drawio.png)
+<p align="center">
+    <img src="img/post-ocr.drawio.png">
+</p>
