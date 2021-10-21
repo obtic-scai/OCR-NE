@@ -7,10 +7,17 @@ Three spellchecking libraries have been tested: [`pyspellchecker`](https://githu
 1. approach by dictionary (`pyspellchecker` and `pyenchant` );
 2. machine-learning approach  (`jamspell`).
 
-The ultimate goal was not the correction post-OCR _per se_, but the valorisation and the exploitation of the corpus via the named entity recognition (NER) method, in order to determine the impact of the spellchecking libraries on the NER task.
+The ultimate goal was not the correction post-OCR _per se_, but the valorisation and the exploitation of the orthographically corrected corpus via the named entity recognition (NER) method, in order to determine the impact of the spellchecking libraries on the NER task.
 
 The code for spellchecking the texts with `pyenchant` was originally written by Nicolas Hiebel, the former intern of the former OBVIL Laboratory of Excellence (cf. the original [repo](https://github.com/Hiebel/Stage-OBVIL-2020/tree/master/Python). 
 
+# Workflow 
+
+The flowchart diagram below illustrates the general idea of the project:
 <p align="center">
     <img src="img/post-ocr.drawio.png">
 </p>
+
+# Results
+
+
