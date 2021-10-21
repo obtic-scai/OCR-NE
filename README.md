@@ -6,7 +6,7 @@ This repository contains code developed for spell checking the raw OCRised Frenc
 
 Three spellchecking libraries have been tested: [`pyspellchecker`](https://github.com/barrust/pyspellchecker), [`pyenchant`](https://github.com/pyenchant/pyenchant) and [`jamspell`](https://github.com/bakwc/JamSpell), with the aim to compare the two approaches in terms of their general performance:
 
-1. approach by dictionary (`pyspellchecker` and `pyenchant` );
+1. dictionary-based approach (`pyspellchecker` and `pyenchant` );
 2. machine-learning approach  (`jamspell`).
 
 The ultimate goal was not the correction post-OCR _per se_, but the valorisation and the exploitation of the orthographically corrected corpus via the named entity recognition (NER) method, in order to determine the impact of the spellchecking libraries on the NER task.
