@@ -26,7 +26,7 @@ The use of those three libraries has relatively improved the text output, even t
 
 Some tokens have been well corrected, especially those containing the recurrent alternation throughout the text of the type **_ſ:s_**, where the _ſ_ is a ligature designating the "long s" (e.g. _con**ſ**eillers > con**s**eillers, repré**ſ**ente > repré**s**ente, diver**ſ**es > diver**s**es_ and so on).
 
-However, the library sometimes corrects words that do not require correction (_**l**’abondance > abondance_).
+However, the library sometimes corrects words that do not require correction (_**l**’abondance > abondance_).<br>
 The archaic forms of verbs were modernised during the correction (_apport**o**it > apport**a**it_).<br> 
 In addition, the less known named entities were not corrected, e.g. _Tchun-t**ſ**iou_ (a book about the description of China), instead of _Tchun-t**s**iou_.
 
