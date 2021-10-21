@@ -102,6 +102,6 @@ Correction examples:
 # Conclusion 
 
 * When combined together, `pyspellchecker` and `pyenchant` correct very well the misspelled words that might have been left uncorrected if only `pyspellchecker` had been used, but the corrections take a considerable amount of time (around 15 minutes for one file weighting between 100 and 200 MB with the first library, and around 10 minutes for the second one);
-* `jamspell` is much less time-consuming; however, 
+* `jamspell` is much less time-consuming; however, much better results could be generated if the library is trained on the dedicated corpus.
 
 For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
