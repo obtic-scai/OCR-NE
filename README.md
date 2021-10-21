@@ -1,5 +1,7 @@
 # OCR-NER
 
+The present research has been conducted during my internship within the project-team SCAI | ObTIC (Sorbonne Center for Artificial Intelligence | Observatoire des Textes, des Idées et des Corpus), under the supervision of Motasem Alrahabi.
+
 This repository contains code developed for spell checking the raw OCRised French texts in the TEI-XML format issued from the [Très Grande Bibliothèque](http://obvil.lip6.fr/tgb/) (TGB).
 
 Three spellchecking libraries have been tested: [`pyspellchecker`](https://github.com/barrust/pyspellchecker), [`pyenchant`](https://github.com/pyenchant/pyenchant) and [`jamspell`](https://github.com/bakwc/JamSpell), with the aim to compare the two approaches in terms of their general performance:
@@ -104,4 +106,4 @@ Correction examples:
 * When combined together, `pyspellchecker` and `pyenchant` correct very well the misspelled words that might have been left uncorrected if only `pyspellchecker` had been used, but the corrections take a considerable amount of time (around 15 minutes for one file weighting between 100 and 200 MB with the first library, and around 10 minutes for the second one);
 * `jamspell` is much less time-consuming; however, much better results could be generated if the library is trained on the dedicated corpus.
 
-For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
+For more details, see my [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
