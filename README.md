@@ -20,4 +20,8 @@ The flowchart diagram below illustrates the general idea of the project:
 
 # Results
 
+The use of those three libraries has improved the text output, even though the results are not perfect:
 
+## `pyspellchecker`
+
+For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
