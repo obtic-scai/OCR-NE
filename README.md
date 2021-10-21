@@ -20,10 +20,10 @@ The flowchart diagram below illustrates the general idea of the project:
 
 # Results
 
-The use of those three libraries has improved the text output, even though the results are not perfect:
+The use of those three libraries has relatively improved the text output, even though some results are not perfect:
 
 ## `pyspellchecker`
 
-Some tokens have been well corrected, especially those containing the recurrent alternation throughout the text of the type _ſ:s_, where the _ſ_ is a ligature designating the "long s" (e.g. _con**ſ**eillers > con**s**eillers, repré**ſ**ente > repré**s**ente, diver**ſ**es > diver**s**es_ and so on).
+Some tokens have been well corrected, especially those containing the recurrent alternation throughout the text of the type **_ſ:s_**, where the _ſ_ is a ligature designating the "long s" (e.g. _con**ſ**eillers > con**s**eillers, repré**ſ**ente > repré**s**ente, diver**ſ**es > diver**s**es_ and so on).
 
 For more details, cf. the [internship report](https://docs.google.com/document/d/1DoVp1Ix6xobsaK2XBvQokKUpTzVbAa0B3VEPD7GWmlc/edit?usp=sharing). 
